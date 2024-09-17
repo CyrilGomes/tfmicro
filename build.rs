@@ -212,7 +212,7 @@ trait CompilationBuilder {
         // risc-v or android
         //
         // not fully tested, could be wrong
-        if target.starts_with("riscv32") || target.starts_with("riscv64") ||target.contains("android") {
+        if target.starts_with("riscv32") ||target.contains("android") {
             self.define("TF_LITE_USE_GLOBAL_CMATH_FUNCTIONS", None)
                 .flag("-includecsrc/inject_cmath_std.hpp")
         } else {
