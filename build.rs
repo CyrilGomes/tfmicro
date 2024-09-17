@@ -251,7 +251,7 @@ fn cc_tensorflow_library() {
                 .expect("Error querying gcc for libm location"),
         );
         let libm_path = libm_location.parent().unwrap();
-
+        print("libm path: {:?}", libm_path);
         // Pass this to the linker
         println!(
             "cargo:rustc-link-search=native={}",
@@ -468,7 +468,7 @@ fn bindgen_tflite_types() {
             .clang_arg("-DGEMMLOWP_ALLOW_SLOW_SCALAR_FALLBACK")
             .clang_arg("-xc++")
             .clang_arg("-std=c++11")
-            .no_copy("_Tp");;
+            .no_copy("_Tp");
 
         let bindings =
             bindings.generate().expect("Unable to generate bindings");
