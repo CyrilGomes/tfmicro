@@ -467,7 +467,8 @@ fn bindgen_tflite_types() {
             ))
             .clang_arg("-DGEMMLOWP_ALLOW_SLOW_SCALAR_FALLBACK")
             .clang_arg("-xc++")
-            .clang_arg("-std=c++11");
+            .clang_arg("-std=c++11")
+            .no_copy("_Tp");;
 
         let bindings =
             bindings.generate().expect("Unable to generate bindings");
