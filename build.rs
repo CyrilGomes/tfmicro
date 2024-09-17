@@ -212,7 +212,7 @@ trait CompilationBuilder {
         // risc-v or android
         //
         // not fully tested, could be wrong
-        if target.starts_with("riscv32") || target.contains("android") {
+        if target.starts_with("riscv32") || target.starts_with("riscv64") ||target.contains("android") {
             self.define("TF_LITE_USE_GLOBAL_CMATH_FUNCTIONS", None)
                 .flag("-includecsrc/inject_cmath_std.hpp")
         } else {
@@ -352,7 +352,11 @@ fn bindgen_cross_builder() -> Result<bindgen::Builder> {
             // https://github.com/rust-lang/rust-bindgen/issues/1555
             //
             builder.clang_arg("--target=riscv32")
-        } else {
+        } else if target.starts_with("riscv64") {
+            println!("Setting bindgen to cross compile to RISCV64");
+            builder.clang_arg("--target=riscv64")
+        }
+        else {
             println!("Setting bindgen to cross compile to {}", target);
 
             builder.clang_arg(format!("--target={}", target))
