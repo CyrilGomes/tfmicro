@@ -251,7 +251,7 @@ fn cc_tensorflow_library() {
                 .expect("Error querying gcc for libm location"),
         );
         let libm_path = libm_location.parent().unwrap();
-        print("libm path: {:?}", libm_path);
+        println!("libm path: {:?}", libm_path);
         // Pass this to the linker
         println!(
             "cargo:rustc-link-search=native={}",
